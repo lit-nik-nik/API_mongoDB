@@ -2,8 +2,10 @@ const mongoose = require("mongoose");
 
 const Time = mongoose.model('Time');
 
-const getAll = (req, res) => {
-    Time.find()
+const getTime = (req, res) => {
+    const id = req.params.id;
+
+    Time.findOne({time_id: id})
         .exec()
         .then(settings => res.json(settings))
         .catch(err => res.status(500).json(err));
@@ -12,6 +14,7 @@ const getAll = (req, res) => {
 const create = (req, res) => {
 
     const newTime = {
+        time_id: 1,
         modify_time: req.body.time,
     }
 
@@ -21,14 +24,19 @@ const create = (req, res) => {
 };
 
 const update = (req, res) => {
-    Time.findOneAndUpdate({order_id: req.params.id}, req.body)
+
+    const changeTime = {
+        modify_time: req.body.time
+    }
+
+    Time.findOneAndUpdate({time_id: req.params.id}, changeTime)
         .exec()
         .then(setting => res.json(setting))
         .catch(err => res.status(500).json(err));
 };
 
 module.exports = {
-    getAll,
+    getTime,
     create,
     update
 }
