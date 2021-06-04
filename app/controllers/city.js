@@ -19,13 +19,12 @@ const getOne = (req, res) => {
 };
 
 const create = (req, res) => {
-
-    const id = +req.body.order.match(/^\d+/)[0];
+    const {order_id, order_name, delivery_city} = req.body;
 
     const newCity = {
-        order_id: id,
-        order_name: req.body.order,
-        delivery_city: req.body.city,
+        order_id,
+        order_name,
+        delivery_city,
     }
 
     City.create(newCity)
