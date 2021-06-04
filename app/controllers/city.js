@@ -25,7 +25,7 @@ const create = (req, res) => {
     const newCity = {
         order_id: id,
         order_name: req.body.order,
-        delivery_сity: req.body.city,
+        delivery_city: req.body.city,
     }
 
     City.create(newCity)
