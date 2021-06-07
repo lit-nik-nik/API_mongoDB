@@ -25,6 +25,8 @@ const create = (req, res) => {
 
 const update = (req, res) => {
 
+    console.log(req.body)
+
     const changeTime = {
         modify_time: req.body.time
     }

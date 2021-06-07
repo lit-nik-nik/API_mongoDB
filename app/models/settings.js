@@ -4,7 +4,8 @@ const settingsSchema = new mongoose.Schema({
     client_id: Number,
     client_name: String,
     select_header: Array,
-    number_orders: Number
+    number_orders: Number,
+    delivery_city: Array
 }, {
     versionKey: false
 });
