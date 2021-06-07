@@ -9,6 +9,15 @@ const getAll = (req, res) => {
         .catch(err => res.status(500).json(err));
 };
 
+const getAllClient = (req, res) => {
+    const id = req.params.id;
+
+    City.find({client_id: id})
+        .exec()
+        .then(settingUser => res.json(settingUser))
+        .catch(err => res.status(500).json(err));
+}
+
 const getOne = (req, res) => {
     const id = req.params.id;
 
@@ -19,9 +28,10 @@ const getOne = (req, res) => {
 };
 
 const create = (req, res) => {
-    const {order_id, order_name, delivery_city} = req.body;
+    const {order_id, order_name, delivery_city, client_id} = req.body;
 
     const newCity = {
+        client_id,
         order_id,
         order_name,
         delivery_city,
@@ -48,6 +58,7 @@ const remove = (req, res) => {
 
 module.exports = {
     getAll,
+    getAllClient,
     getOne,
     create,
     update,
